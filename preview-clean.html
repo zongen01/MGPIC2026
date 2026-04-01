@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MGPIC 2026 Clean Preview</title>
+  <style>
+    :root {
+      --bg: #09090d;
+      --bg-soft: #101017;
+      --line: rgba(255,255,255,0.08);
+      --text: #f7f7fb;
+      --muted: #a9a9b6;
+      --primary: #be348a;
+      --primary-soft: rgba(190,52,138,0.12);
+      --max: 1160px;
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 50% -10%, rgba(190,52,138,0.18), transparent 28%),
+        linear-gradient(180deg, #09090d 0%, #0d0d12 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(var(--max), calc(100vw - 32px)); margin: 0 auto; }
+    .header {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(9,9,13,0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .nav {
+      min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 12px; }
+    .brand-mark {
+      width: 40px; height: 40px; border-radius: 12px;
+      display: grid; place-items: center; font-weight: 800; color: #fff;
+      background: linear-gradient(135deg, var(--primary), #d94ea1);
+      box-shadow: 0 16px 36px rgba(190,52,138,0.24);
+    }
+    .brand small { display: block; color: var(--muted); font-size: 12px; }
+    .nav-links { display: inline-flex; gap: 24px; color: var(--muted); }
+    .nav-cta {
+      min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03); display: inline-flex; align-items: center; font-weight: 700;
+    }
+    .hero {
+      padding: 84px 0 48px;
+      display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 36px; align-items: end;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; min-height: 30px; padding: 0 12px;
+      border-radius: 999px; background: var(--primary-soft); color: #f0b7d8; font-size: 12px; font-weight: 700;
+      border: 1px solid rgba(190,52,138,0.22);
+    }
+    h1 {
+      margin: 18px 0 16px; font-size: clamp(42px, 6vw, 78px); line-height: 1.02; letter-spacing: -0.05em;
+      max-width: 780px;
+    }
+    .hero p { color: var(--muted); font-size: 18px; line-height: 1.75; max-width: 760px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .btn {
+      min-height: 48px; padding: 0 18px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center;
+      font-weight: 700; border: 1px solid var(--line);
+    }
+    .btn.primary { background: linear-gradient(135deg, var(--primary), #d94ea1); border: none; color: #fff; }
+    .btn.secondary { background: rgba(255,255,255,0.03); }
+    .hero-side {
+      padding: 28px; border-radius: 28px; background: linear-gradient(180deg, rgba(190,52,138,0.10), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .metric {
+      padding: 16px 0; border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex; justify-content: space-between; gap: 16px; align-items: baseline;
+    }
+    .metric:first-of-type { margin-top: 18px; }
+    .metric span { color: var(--muted); }
+    .metric strong { font-size: 28px; }
+    .section {
+      padding: 42px 0; border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .section-head { max-width: 760px; margin-bottom: 22px; }
+    .section-head h2 {
+      margin: 0 0 12px; font-size: clamp(28px, 4vw, 50px); line-height: 1.08; letter-spacing: -0.04em;
+    }
+    .section-head p { margin: 0; color: var(--muted); line-height: 1.75; }
+    .cards {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+    }
+    .card {
+      padding: 0 0 18px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .card h3 { margin: 0 0 10px; font-size: 20px; }
+    .card p, .card li { margin: 0; color: var(--muted); line-height: 1.75; }
+    .card ul { margin: 12px 0 0 18px; padding: 0; }
+    .timeline { display: grid; gap: 18px; }
+    .timeline-item {
+      display: grid; grid-template-columns: 80px 1fr; gap: 20px; padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .timeline-item strong {
+      width: 56px; height: 56px; display: grid; place-items: center; border-radius: 16px;
+      background: var(--primary-soft); color: #f0b7d8; border: 1px solid rgba(190,52,138,0.22);
+    }
+    .timeline-item h3 { margin: 0 0 8px; font-size: 22px; }
+    .timeline-item p { margin: 0; color: var(--muted); line-height: 1.75; }
+    .faq { display: grid; gap: 0; }
+    .faq details {
+      padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .faq summary { cursor: pointer; font-weight: 700; list-style: none; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq p { color: var(--muted); line-height: 1.75; margin: 10px 0 0; }
+    .footer { padding: 28px 0 50px; color: var(--muted); }
+    .footer-line { display: flex; justify-content: space-between; gap: 16px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 18px; }
+    @media (max-width: 980px) {
+      .hero, .cards { grid-template-columns: 1fr; }
+      .nav { flex-direction: column; align-items: flex-start; padding: 14px 0; }
+    }
+    @media (max-width: 760px) {
+      .wrap { width: min(var(--max), calc(100vw - 20px)); }
+      .nav-links { display: none; }
+      .timeline-item { grid-template-columns: 1fr; }
+      .btn, .nav-cta { width: 100%; }
+      .hero-actions { width: 100%; }
+      .footer-line { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="wrap nav">
+      <a class="brand" href="#top">
+        <span class="brand-mark">M</span>
+        <span><strong>MGPIC 2026</strong><small>MoonBit Open Source Challenge</small></span>
+      </a>
+      <nav class="nav-links">
+        <a href="#about">介绍</a>
+        <a href="#paths">参与路径</a>
+        <a href="#timeline">时间安排</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="nav-cta" href="#join">关注赛事</a>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">MoonBit Programming Innovation Challenge 2026</span>
+        <h1>页面改成连续版式，不再一块一块切开</h1>
+        <p>这一版不再给每个模块都套一层重背景卡片，而是用连续的页面流、分隔线和少量重点高亮来组织内容。视觉上会更像正式官网，而不是很多独立小组件拼在一起。</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#paths">查看参与路径</a>
+          <a class="btn secondary" href="https://www.moonbitlang.cn/" target="_blank">了解 MoonBit</a>
+        </div>
+      </div>
+      <aside class="hero-side">
+        <span class="eyebrow">2026 目标</span>
+        <div class="metric"><span>目标参赛者</span><strong>1000</strong></div>
+        <div class="metric"><span>目标仓库</span><strong>300+</strong></div>
+        <div class="metric"><span>重点项目</span><strong>100+</strong></div>
+        <div class="metric"><span>视觉主色</span><strong>MoonBit 紫</strong></div>
+      </aside>
+    </section>
+
+    <section id="about" class="section">
+      <div class="section-head">
+        <h2>为什么现在看起来奇怪</h2>
+        <p>问题不在内容本身，而在视觉系统：当前页面给太多模块都加了独立背景、边框、阴影和圆角，导致整体被切得过碎。新的方向会改成大版块连续排布，只保留少量重点强调。</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <h3>减少卡片层级</h3>
+          <p>介绍、赛制、FAQ 这些内容不再全部套厚重卡片，避免页面像拼装界面。</p>
+        </article>
+        <article class="card">
+          <h3>建立连续节奏</h3>
+          <p>用留白、分隔线、标题层级和少量高亮，替代一堆相似的盒子。</p>
+        </article>
+        <article class="card">
+          <h3>统一主色</h3>
+          <p>整体紫色会跟随你发的 MoonBit logo，改成更接近品牌的紫，而不是通用科技紫。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="paths" class="section">
+      <div class="section-head">
+        <h2>参与路径</h2>
+        <p>这里保留三条主路径，但展示方式会更轻，不再每条都像一张厚卡片。</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <h3>开源入门组</h3>
+          <p>面向第一次接触 MoonBit 的开发者。</p>
+          <ul>
+            <li>环境搭建与最小项目</li>
+            <li>首个 Issue / PR</li>
+            <li>新手任务池</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>开源贡献组</h3>
+          <p>围绕生态项目、文档、测试与工具链展开持续贡献。</p>
+          <ul>
+            <li>Good First Issue</li>
+            <li>文档 / 测试 / 示例任务</li>
+            <li>周度贡献榜</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>项目挑战组</h3>
+          <p>面向完整项目和重点展示方向。</p>
+          <ul>
+            <li>项目申报与预答辩</li>
+            <li>中期验收与 Demo Day</li>
+            <li>项目展示与孵化推荐</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="timeline" class="section">
+      <div class="section-head">
+        <h2>时间安排</h2>
+        <p>时间线改成纵向连续列表，比一排排方块更稳，也更适合手机端。</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item"><strong>01</strong><div><h3>预热与合作招募</h3><p>发布赛事主张，启动社区、高校与合作伙伴联动。</p></div></div>
+        <div class="timeline-item"><strong>02</strong><div><h3>报名与训练营</h3><p>开放预登记，发布任务池、模板仓库与直播答疑。</p></div></div>
+        <div class="timeline-item"><strong>03</strong><div><h3>开源贡献与项目开发</h3><p>围绕公开仓库、持续提交与项目孵化展开正式开发。</p></div></div>
+        <div class="timeline-item"><strong>04</strong><div><h3>中期验收与 Demo Day</h3><p>通过活跃度、里程碑与项目质量筛选重点项目。</p></div></div>
+        <div class="timeline-item"><strong>05</strong><div><h3>决赛答辩与成果开放</h3><p>展示优秀项目，发布榜单，并开启后续生态共建通道。</p></div></div>
+      </div>
+    </section>
+
+    <section id="join" class="section">
+      <div class="section-head">
+        <h2>下一版我会直接这样改</h2>
+        <p>先把版式改顺，再继续推进 MoonBit + Rabbita 重构。否则即便技术栈换了，视觉问题还是会留着。</p>
+      </div>
+      <div class="cards">
+        <article class="card"><h3>先改视觉系统</h3><p>把厚重卡片体系收掉，改成连续官网版式。</p></article>
+        <article class="card"><h3>再接 MoonBit</h3><p>把结构稳定后，再把公开页面切到 MoonBit + Rabbita。</p></article>
+        <article class="card"><h3>最后补双语和日夜模式</h3><p>在稳定视觉基础上补功能，不再反复拆改。</p></article>
+      </div>
+    </section>
+
+    <section id="faq" class="section">
+      <div class="section-head">
+        <h2>FAQ</h2>
+        <p>FAQ 也会从一块一块的卡片，改成更轻的连续折叠列表。</p>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>这版主要改什么</summary>
+          <p>先解决“页面被切碎”的问题，统一视觉层级和主色，再继续技术重构。</p>
+        </details>
+        <details>
+          <summary>MoonBit logo 的紫色会用上吗</summary>
+          <p>会，主色会改成更接近 logo 的紫色体系。</p>
+        </details>
+        <details>
+          <summary>现在公开站还是 MoonBit 吗</summary>
+          <p>现在公开 main 还不是 MoonBit 版，下一步会在改版式后切过去。</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    <div class="footer-line">
+      <div>MGPIC 2026 · MoonBit Open Source Challenge</div>
+      <div><a href="https://github.com/zongen01/MGPIC2026" target="_blank">GitHub</a> · <a href="https://www.moonbitlang.cn/" target="_blank">MoonBit</a></div>
+    </div>
+  </footer>
+</body>
+</html>
