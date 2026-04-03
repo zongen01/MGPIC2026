@@ -741,17 +741,17 @@ a {
 }
 
 .section-head > .eyebrow {
-  min-height: auto;
-  padding: 0;
-  margin: 0 0 12px;
-  border: 0;
-  border-radius: 0;
-  background: none;
-  color: var(--text);
-  font-size: clamp(28px, 3vw, 42px);
-  font-weight: 900;
-  line-height: 1.08;
-  letter-spacing: -0.04em;
+  min-height: 42px;
+  padding: 0 18px;
+  margin: 0 0 14px;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
+  color: var(--primary);
+  font-size: clamp(16px, 1.6vw, 20px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.02em;
   text-transform: none;
 }
 
@@ -759,9 +759,9 @@ a {
   margin: 0;
   max-width: 42ch;
   color: var(--text-soft);
-  font-size: clamp(18px, 1.7vw, 24px);
-  font-weight: 600;
-  line-height: 1.55;
+  font-size: clamp(18px, 2.2vw, 32px);
+  font-weight: 700;
+  line-height: 1.28;
   letter-spacing: -0.02em;
 }
 
@@ -1051,14 +1051,16 @@ a {
   }
 
   .section-head > .eyebrow {
-    margin-bottom: 10px;
-    font-size: clamp(24px, 8vw, 34px);
-    line-height: 1.12;
+    min-height: 38px;
+    padding: 0 15px;
+    margin-bottom: 12px;
+    font-size: clamp(14px, 4.2vw, 18px);
+    line-height: 1;
   }
 
   .section-head h2 {
-    font-size: clamp(16px, 4.4vw, 20px);
-    line-height: 1.6;
+    font-size: clamp(18px, 5vw, 26px);
+    line-height: 1.3;
   }
 
   .hero-banner {
