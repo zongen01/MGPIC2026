@@ -575,6 +575,17 @@ fn view_hero_banner(model : Model) -> Html {
         div(class="hero-stage-m", "M"),
         span(class="hero-stage-orb hero-stage-orb--left", ""),
         span(class="hero-stage-orb hero-stage-orb--right", ""),
+        div(class="hero-rabbita", [
+          span(class="hero-rabbita-ear hero-rabbita-ear--left", ""),
+          span(class="hero-rabbita-ear hero-rabbita-ear--right", ""),
+          span(class="hero-rabbita-head", ""),
+          span(class="hero-rabbita-body", ""),
+          span(class="hero-rabbita-arm hero-rabbita-arm--left", ""),
+          span(class="hero-rabbita-arm hero-rabbita-arm--right", ""),
+          span(class="hero-rabbita-foot hero-rabbita-foot--left", ""),
+          span(class="hero-rabbita-foot hero-rabbita-foot--right", ""),
+          span(class="hero-rabbita-tail", ""),
+        ]),
         div(class="hero-stage-panel hero-stage-panel--left", [
           span(class="hero-stage-panel-label", t(model.locale, zh="任务池", en="Task pool")),
           strong(

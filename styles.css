@@ -432,7 +432,7 @@ a {
 .hero-stage-m {
   position: absolute;
   left: 50%;
-  top: -6px;
+  top: -10px;
   transform: translateX(-50%);
   font-family:
     "Avenir Next Condensed",
@@ -443,7 +443,8 @@ a {
   font-weight: 900;
   line-height: 0.78;
   letter-spacing: -0.12em;
-  color: rgba(241, 249, 255, 0.94);
+  color: rgba(241, 249, 255, 0.9);
+  opacity: 0.94;
   text-shadow:
     0 0 18px rgba(255, 255, 255, 0.16),
     0 0 48px rgba(255, 60, 168, 0.32);
@@ -474,6 +475,130 @@ a {
   background:
     radial-gradient(circle at 30% 30%, rgba(228, 247, 255, 0.8), rgba(104, 196, 255, 0.42) 34%, rgba(104, 196, 255, 0.06) 70%);
   box-shadow: 0 0 34px rgba(104, 196, 255, 0.2);
+}
+
+.hero-rabbita {
+  position: absolute;
+  left: 50%;
+  bottom: 92px;
+  width: 208px;
+  height: 248px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-rabbita-ear,
+.hero-rabbita-head,
+.hero-rabbita-body,
+.hero-rabbita-arm,
+.hero-rabbita-foot,
+.hero-rabbita-tail {
+  position: absolute;
+  display: block;
+  background: linear-gradient(180deg, #d64ca0 0%, #8f1c67 58%, #5d0f4f 100%);
+  box-shadow:
+    inset 0 1px 8px rgba(255, 255, 255, 0.18),
+    0 18px 32px rgba(48, 7, 49, 0.28);
+}
+
+.hero-rabbita-ear {
+  top: 0;
+  width: 54px;
+  height: 126px;
+  border-radius: 999px 999px 28px 28px;
+}
+
+.hero-rabbita-ear::after {
+  content: "";
+  position: absolute;
+  inset: 10px 12px 22px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 179, 222, 0.82), rgba(151, 34, 105, 0.12));
+  opacity: 0.72;
+}
+
+.hero-rabbita-ear--left {
+  left: 38px;
+  transform: rotate(-8deg);
+}
+
+.hero-rabbita-ear--right {
+  right: 38px;
+  transform: rotate(8deg);
+}
+
+.hero-rabbita-head {
+  left: 50%;
+  top: 72px;
+  width: 112px;
+  height: 100px;
+  transform: translateX(-50%);
+  border-radius: 52px;
+}
+
+.hero-rabbita-head::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 52% 24%, rgba(255, 193, 232, 0.32), transparent 40%);
+}
+
+.hero-rabbita-body {
+  left: 50%;
+  bottom: 18px;
+  width: 124px;
+  height: 110px;
+  transform: translateX(-50%);
+  border-radius: 54px 54px 44px 44px;
+}
+
+.hero-rabbita-arm {
+  top: 162px;
+  width: 40px;
+  height: 58px;
+  border-radius: 30px;
+}
+
+.hero-rabbita-arm--left {
+  left: 28px;
+  transform: rotate(18deg);
+}
+
+.hero-rabbita-arm--right {
+  right: 28px;
+  transform: rotate(-18deg);
+}
+
+.hero-rabbita-foot {
+  bottom: 0;
+  width: 52px;
+  height: 34px;
+  border-radius: 999px;
+}
+
+.hero-rabbita-foot--left {
+  left: 42px;
+  transform: rotate(12deg);
+}
+
+.hero-rabbita-foot--right {
+  right: 42px;
+  transform: rotate(-12deg);
+}
+
+.hero-rabbita-tail {
+  left: 50%;
+  bottom: 22px;
+  width: 28px;
+  height: 28px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: radial-gradient(circle at 38% 34%, #f5badf 0%, #cc5ca5 42%, #7b1d63 100%);
+  box-shadow:
+    inset 0 1px 6px rgba(255, 255, 255, 0.26),
+    0 10px 22px rgba(60, 10, 54, 0.24);
 }
 
 .hero-stage-panel {
@@ -527,6 +652,7 @@ a {
   bottom: 22px;
   width: min(100%, 430px);
   transform: translateX(-50%);
+  z-index: 2;
   padding: 14px;
   border: 1px solid rgba(170, 196, 255, 0.22);
   border-radius: 28px;
@@ -1123,6 +1249,61 @@ a {
   .hero-stage-m {
     top: 10px;
     font-size: clamp(168px, 40vw, 240px);
+  }
+
+  .hero-rabbita {
+    bottom: 70px;
+    width: 152px;
+    height: 192px;
+  }
+
+  .hero-rabbita-ear {
+    width: 40px;
+    height: 96px;
+  }
+
+  .hero-rabbita-ear--left {
+    left: 28px;
+  }
+
+  .hero-rabbita-ear--right {
+    right: 28px;
+  }
+
+  .hero-rabbita-head {
+    top: 56px;
+    width: 84px;
+    height: 76px;
+  }
+
+  .hero-rabbita-body {
+    width: 94px;
+    height: 82px;
+  }
+
+  .hero-rabbita-arm {
+    top: 126px;
+    width: 30px;
+    height: 42px;
+  }
+
+  .hero-rabbita-foot {
+    width: 40px;
+    height: 24px;
+  }
+
+  .hero-rabbita-foot--left {
+    left: 30px;
+  }
+
+  .hero-rabbita-foot--right {
+    right: 30px;
+  }
+
+  .hero-rabbita-tail {
+    bottom: 16px;
+    width: 22px;
+    height: 22px;
   }
 
   .hero-stage-panel {
