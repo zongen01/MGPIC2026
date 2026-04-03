@@ -204,8 +204,8 @@ fn hero_eyebrow(locale : Locale) -> String {
 fn hero_title(locale : Locale) -> String {
   t(
     locale,
-    zh="以开源为主线，\n发起一场面向 1000 名开发者的 MoonBit 创新挑战计划",
-    en="Build an open-source-first MoonBit challenge program for 1,000 developers",
+    zh="把赛事做成一次真正的\nMoonBit 开源生态增长计划",
+    en="Turn the contest into a real\nMoonBit open-source growth program",
   )
 }
 
@@ -216,6 +216,34 @@ fn hero_text(locale : Locale) -> String {
     zh="MGPIC 2026 不只是一次比赛，而是一场围绕 GitHub 开源协作、工程化项目交付与长期生态沉淀展开的开发者动员计划。赛事将通过任务池、模板仓库、Codex 启动支持与项目孵化机制，帮助更多开发者真正开始并持续参与 MoonBit 开源生态建设。",
     en="MGPIC 2026 is not only a contest. It is an open-source mobilization program built around GitHub collaboration, engineering delivery, and long-term ecosystem growth. The event will use task pools, starter repositories, Codex-assisted onboarding, and incubation mechanisms to help more developers begin and stay active in the MoonBit ecosystem.",
   )
+}
+
+///|
+fn hero_kv_title(locale : Locale) -> String {
+  t(
+    locale,
+    zh="MoonBit 开源创新挑战计划",
+    en="MoonBit Open Source Challenge",
+  )
+}
+
+///|
+fn hero_kv_subtitle(locale : Locale) -> String {
+  t(
+    locale,
+    zh="以开源协作、工程实践与长期生态沉淀为主线的 2026 年度开发者赛事",
+    en="A 2026 developer challenge for open-source collaboration, engineering practice, and long-term ecosystem growth",
+  )
+}
+
+///|
+fn hero_kv_tags(locale : Locale) -> Array[String] {
+  [
+    t(locale, zh="开源协作", en="Open source"),
+    t(locale, zh="工程实践", en="Engineering"),
+    t(locale, zh="项目孵化", en="Incubation"),
+    t(locale, zh="GitHub 协作", en="GitHub collaboration"),
+  ]
 }
 
 ///|
@@ -414,40 +442,113 @@ fn view_metric(metric : Metric) -> Html {
 }
 
 ///|
-fn view_hero(model : Model) -> Html {
-  section(id="top", class="hero", [
-    div(class="container hero-inner", [
-      div(class="hero-copy", [
-        p(class="eyebrow", hero_eyebrow(model.locale)),
-        h1(class="hero-title", hero_title(model.locale)),
-        p(class="hero-text", hero_text(model.locale)),
-        div(class="hero-actions", [
-          a(
-            class="button primary",
-            href="#join",
-            t(model.locale, zh="报名通道预留", en="Reserve the sign-up channel"),
+fn view_hero_banner(model : Model) -> Html {
+  div(class="hero-banner", [
+    div(class="hero-banner-grid", [
+      div(class="hero-banner-copy", [
+        p(class="hero-banner-kicker", hero_eyebrow(model.locale)),
+        div(class="hero-banner-wordmark", [
+          span(class="hero-banner-word", "MGPIC"),
+          span(class="hero-banner-year", "2026"),
+        ]),
+        h2(class="hero-banner-title", hero_kv_title(model.locale)),
+        p(class="hero-banner-subtitle", hero_kv_subtitle(model.locale)),
+        div(class="hero-banner-tags", hero_kv_tags(model.locale).map(fn(label) {
+          span(class="hero-banner-tag", label)
+        })),
+      ]),
+      div(class="hero-banner-art", [
+        div(class="hero-stage-m", "M"),
+        span(class="hero-stage-orb hero-stage-orb--left", ""),
+        span(class="hero-stage-orb hero-stage-orb--right", ""),
+        div(class="hero-stage-panel hero-stage-panel--left", [
+          span(class="hero-stage-panel-label", t(model.locale, zh="任务池", en="Task pool")),
+          strong(
+            class="hero-stage-panel-value",
+            t(
+              model.locale,
+              zh="公开仓库 / Good First Issue",
+              en="Public repos / good first issues",
+            ),
           ),
-          a(
-            class="button secondary",
-            href="https://www.moonbitlang.cn/",
-            target=Blank,
-            rel="noreferrer",
-            t(model.locale, zh="了解 MoonBit", en="Explore MoonBit"),
+        ]),
+        div(class="hero-stage-panel hero-stage-panel--right", [
+          span(class="hero-stage-panel-label", t(model.locale, zh="项目交付", en="Project delivery")),
+          strong(
+            class="hero-stage-panel-value",
+            t(
+              model.locale,
+              zh="Demo Day / 孵化推荐",
+              en="Demo day / incubation",
+            ),
           ),
+        ]),
+        div(class="hero-console", [
+          div(class="hero-console-top", [
+            span(class="hero-console-topline", "moon check --target js"),
+            span(class="hero-console-status", t(model.locale, zh="生态构建中", en="Build in progress")),
+          ]),
+          div(class="hero-console-screen", [
+            p(class="hero-console-line hero-console-line--strong", "Open Source x Engineering"),
+            p(class="hero-console-line", "GitHub / Starter Repo / Codex"),
+            p(
+              class="hero-console-line",
+              t(
+                model.locale,
+                zh="面向 1000 名开发者的年度挑战计划",
+                en="A challenge program for 1,000 builders",
+              ),
+            ),
+          ]),
+          div(class="hero-console-tags", [
+            span(class="hero-console-tag", "GitHub"),
+            span(class="hero-console-tag", "Codex"),
+            span(class="hero-console-tag", "MoonBit"),
+          ]),
         ]),
       ]),
-      div(class="hero-panel", [
-        div(class="stat-card stat-card--large", [
-          span(class="stat-key", t(model.locale, zh="2026 目标", en="2026 Goal")),
-          strong(
-            class="stat-value stat-value--large",
-            t(model.locale, zh="1000 名有效参赛者", en="1,000 effective participants"),
-          ),
-          p(
-            t(model.locale, zh="围绕公开仓库、真实提交、项目孵化和成果展示，形成可验证的开源增长成果。", en="Turn public repositories, real commits, project incubation, and visible showcases into measurable open-source growth."),
-          ),
+    ]),
+  ])
+}
+
+///|
+fn view_hero(model : Model) -> Html {
+  section(id="top", class="hero", [
+    div(class="container", [
+      view_hero_banner(model),
+      div(class="hero-inner", [
+        div(class="hero-copy", [
+          p(class="eyebrow", t(model.locale, zh="Program Vision", en="Program Vision")),
+          h1(class="hero-title", hero_title(model.locale)),
+          p(class="hero-text", hero_text(model.locale)),
+          div(class="hero-actions", [
+            a(
+              class="button primary",
+              href="#join",
+              t(model.locale, zh="报名通道预留", en="Reserve the sign-up channel"),
+            ),
+            a(
+              class="button secondary",
+              href="https://www.moonbitlang.cn/",
+              target=Blank,
+              rel="noreferrer",
+              t(model.locale, zh="了解 MoonBit", en="Explore MoonBit"),
+            ),
+          ]),
         ]),
-        div(class="stats-grid", hero_metrics(model.locale).map(fn(metric) { view_metric(metric) })),
+        div(class="hero-panel", [
+          div(class="stat-card stat-card--large", [
+            span(class="stat-key", t(model.locale, zh="2026 目标", en="2026 Goal")),
+            strong(
+              class="stat-value stat-value--large",
+              t(model.locale, zh="1000 名有效参赛者", en="1,000 effective participants"),
+            ),
+            p(
+              t(model.locale, zh="围绕公开仓库、真实提交、项目孵化和成果展示，形成可验证的开源增长成果。", en="Turn public repositories, real commits, project incubation, and visible showcases into measurable open-source growth."),
+            ),
+          ]),
+          div(class="stats-grid", hero_metrics(model.locale).map(fn(metric) { view_metric(metric) })),
+        ]),
       ]),
     ]),
   ])
