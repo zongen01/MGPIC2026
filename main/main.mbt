@@ -240,8 +240,8 @@ fn hero_title(locale : Locale) -> String {
 fn hero_text(locale : Locale) -> String {
   t(
     locale,
-    zh="MGPIC 2026 不只是一次比赛，而是一场围绕 GitHub 开源协作、工程化项目交付与长期生态沉淀展开的开发者动员计划。赛事将通过任务池、模板仓库、Codex 启动支持与项目孵化机制，帮助更多开发者真正开始并持续参与 MoonBit 开源生态建设。",
-    en="MGPIC 2026 is not only a contest. It is an open-source mobilization program built around GitHub collaboration, engineering delivery, and long-term ecosystem growth. The event will use task pools, starter repositories, Codex-assisted onboarding, and incubation mechanisms to help more developers begin and stay active in the MoonBit ecosystem.",
+    zh="MGPIC 2026 不只是一次比赛，而是一场围绕 GitHub 开源协作、工程化项目交付与长期生态沉淀展开的开发者动员计划。赛事将通过任务池、模板仓库、AI 启动支持与项目孵化机制，帮助更多开发者真正开始并持续参与 MoonBit 开源生态建设。",
+    en="MGPIC 2026 is not only a contest. It is an open-source mobilization program built around GitHub collaboration, engineering delivery, and long-term ecosystem growth. The event will use task pools, starter repositories, AI-assisted onboarding, and incubation mechanisms to help more developers begin and stay active in the MoonBit ecosystem.",
   )
 }
 
@@ -497,7 +497,7 @@ fn timeline_items(locale : Locale) -> Array[TimelineItem] {
 fn support_cards(locale : Locale) -> Array[InfoCard] {
   [
     {
-      title: t(locale, zh="Codex 启动支持", en="Codex kickoff support"),
+      title: t(locale, zh="AI 启动支持", en="AI kickoff support"),
       desc: t(locale, zh="帮助选手完成仓库初始化、任务拆解、样例生成、文档搭建与开发提速，重点解决“不会开始”和“起步太慢”的问题。", en="Help participants initialize repositories, break down tasks, generate examples, build documentation, and accelerate development so they can actually get started."),
     },
     {
@@ -525,7 +525,7 @@ fn faq_items(locale : Locale) -> Array[FaqItem] {
       opened: false,
     },
     {
-      question: t(locale, zh="Codex 会在什么阶段发挥作用？", en="At which stage will Codex be most useful?"),
+      question: t(locale, zh="AI 辅助会在什么阶段发挥作用？", en="At which stage will AI assistance be most useful?"),
       answer: t(locale, zh="更适合项目启动、任务拆解、文档搭建、样例生成和开发提速阶段，后续可根据项目表现分层支持。", en="It is most useful during project kickoff, task planning, documentation setup, sample generation, and development acceleration, with further support layered by project progress."),
       opened: false,
     },
@@ -647,7 +647,7 @@ fn view_hero_banner(model : Model) -> Html {
           ]),
           div(class="hero-console-screen", [
             p(class="hero-console-line hero-console-line--strong", "Open Source x Engineering"),
-            p(class="hero-console-line", "GitHub / Starter Repo / Codex"),
+            p(class="hero-console-line", "GitHub / Starter Repo / AI"),
             p(
               class="hero-console-line",
               t(
@@ -659,7 +659,7 @@ fn view_hero_banner(model : Model) -> Html {
           ]),
           div(class="hero-console-tags", [
             span(class="hero-console-tag", "GitHub"),
-            span(class="hero-console-tag", "Codex"),
+            span(class="hero-console-tag", "AI"),
             span(class="hero-console-tag", "MoonBit"),
           ]),
         ]),
