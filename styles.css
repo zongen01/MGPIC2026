@@ -700,6 +700,12 @@ a {
   gap: 18px;
 }
 
+.learn-step-grid,
+.persona-grid {
+  display: grid;
+  gap: 18px;
+}
+
 .stats-grid {
   grid-template-columns: repeat(2, 1fr);
 }
@@ -710,6 +716,15 @@ a {
 
 .learn-grid {
   grid-template-columns: repeat(2, 1fr);
+}
+
+.learn-step-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.persona-grid {
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 18px;
 }
 
 .section {
@@ -727,6 +742,26 @@ a {
 
 .section-head h2 {
   font-size: clamp(28px, 4vw, 50px);
+}
+
+.learn-journey {
+  margin-bottom: 18px;
+}
+
+.learn-subhead {
+  max-width: 760px;
+  margin-bottom: 20px;
+}
+
+.learn-subhead h3 {
+  margin: 0;
+  font-size: clamp(22px, 3vw, 32px);
+  letter-spacing: -0.04em;
+}
+
+.learn-subhead p {
+  margin: 10px 0 0;
+  color: var(--text-soft);
 }
 
 .info-card,
@@ -754,6 +789,74 @@ a {
 
 .learn-card p {
   max-width: 44ch;
+}
+
+.learn-step-card,
+.persona-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.learn-step-card {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 16px;
+  align-items: start;
+  padding: 22px;
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--primary) 10%, transparent), transparent 32%),
+    var(--panel);
+}
+
+.learn-step-index {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--primary) 16%, transparent);
+  color: var(--primary);
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.learn-step-body h3,
+.persona-card h3 {
+  margin: 0 0 10px;
+}
+
+.learn-step-body p {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.72;
+}
+
+.persona-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 292px;
+  padding: 24px;
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--primary-strong) 10%, transparent), transparent 28%),
+    linear-gradient(180deg, color-mix(in srgb, var(--primary) 4%, transparent), transparent),
+    var(--panel);
+}
+
+.persona-card p {
+  margin-top: 0;
+  color: var(--text-soft);
+}
+
+.persona-points {
+  margin: 0 0 18px;
+  padding-left: 18px;
+  color: var(--text-soft);
+}
+
+.persona-points li + li {
+  margin-top: 8px;
 }
 
 .learn-link {
@@ -880,7 +983,9 @@ a {
   .hero-banner-grid,
   .hero-inner,
   .card-grid,
-  .learn-grid {
+  .learn-grid,
+  .learn-step-grid,
+  .persona-grid {
     grid-template-columns: 1fr;
   }
 
@@ -970,6 +1075,10 @@ a {
   }
 
   .timeline-item {
+    grid-template-columns: 1fr;
+  }
+
+  .learn-step-card {
     grid-template-columns: 1fr;
   }
 

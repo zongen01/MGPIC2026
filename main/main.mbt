@@ -144,6 +144,23 @@ struct LearnCard {
 }
 
 ///|
+struct LearnStep {
+  step : String
+  title : String
+  desc : String
+}
+
+///|
+struct PersonaCard {
+  badge : String
+  title : String
+  desc : String
+  bullets : Array[String]
+  href : String
+  cta : String
+}
+
+///|
 struct PathCard {
   badge : String
   title : String
@@ -370,6 +387,69 @@ fn learn_cards(locale : Locale) -> Array[LearnCard] {
       desc: t(locale, zh="通过 Mooncakes 和交互导览了解现成库、样例项目和常见开发路径。", en="Use Mooncakes and the interactive tour to explore packages, example projects, and common development paths."),
       href: "https://mooncakes.io/",
       cta: t(locale, zh="查看生态", en="Explore ecosystem"),
+    },
+  ]
+}
+
+///|
+fn learn_steps(locale : Locale) -> Array[LearnStep] {
+  [
+    {
+      step: "01",
+      title: t(locale, zh="先看 MoonBit 是什么", en="Understand what MoonBit is"),
+      desc: t(locale, zh="先建立对语言定位、适用场景和生态入口的整体认识，不急着一上来就写大项目。", en="Build a quick mental model of the language, its use cases, and ecosystem before jumping into a larger project."),
+    },
+    {
+      step: "02",
+      title: t(locale, zh="完成安装并跑通最小项目", en="Install it and run a minimal project"),
+      desc: t(locale, zh="先把安装、构建、运行和最小示例打通，后面做赛事任务时会顺很多。", en="Get installation, build, run, and the smallest working example done first so the contest tasks feel smoother later."),
+    },
+    {
+      step: "03",
+      title: t(locale, zh="按自己的背景选择入口", en="Pick the right entry for your background"),
+      desc: t(locale, zh="如果你是零基础、已有开发经验、或者想做编译器方向，推荐的起步路线并不一样。", en="The best first path differs depending on whether you are brand new, already experienced, or aiming at compiler work."),
+    },
+  ]
+}
+
+///|
+fn persona_cards(locale : Locale) -> Array[PersonaCard] {
+  [
+    {
+      badge: t(locale, zh="零基础友好", en="Beginner friendly"),
+      title: t(locale, zh="第一次接触 MoonBit", en="First time with MoonBit"),
+      desc: t(locale, zh="建议先用官网 + 在线体验建立感受，再回到文档完成本地环境配置。", en="Start with the website and online playground, then return to the docs to set up a local environment."),
+      bullets: [
+        t(locale, zh="先看官网和导览", en="Start with the website and tour"),
+        t(locale, zh="在线写一个最小例子", en="Write one minimal example online"),
+        t(locale, zh="再装本地环境", en="Install locally after that"),
+      ],
+      href: "https://try.moonbitlang.cn/",
+      cta: t(locale, zh="从在线体验开始", en="Start in the playground"),
+    },
+    {
+      badge: t(locale, zh="开发者入口", en="Developer track"),
+      title: t(locale, zh="已经有编程经验", en="Already have dev experience"),
+      desc: t(locale, zh="建议直接看文档和 Mooncakes，尽快跑通项目结构、依赖管理和常见库。", en="Go straight to the docs and Mooncakes so you can quickly understand project structure, dependency management, and common libraries."),
+      bullets: [
+        t(locale, zh="优先看安装与项目结构", en="Focus on install and project structure"),
+        t(locale, zh="了解构建系统和包管理", en="Learn the build system and packages"),
+        t(locale, zh="尽快挑一个 Starter Repo", en="Move to a starter repo quickly"),
+      ],
+      href: "https://docs.moonbitlang.cn",
+      cta: t(locale, zh="直接读文档", en="Read the docs"),
+    },
+    {
+      badge: t(locale, zh="编译器方向", en="Compiler path"),
+      title: t(locale, zh="想做语言与编译器赛题", en="Interested in language and compiler work"),
+      desc: t(locale, zh="建议先熟悉语言语法、构建工具和样例仓库，再进入编译器或工具链相关任务。", en="Learn the language basics, build tooling, and example repos first, then move into compiler or toolchain tasks."),
+      bullets: [
+        t(locale, zh="先补语法和构建系统", en="Cover syntax and build tooling first"),
+        t(locale, zh="再看样例项目与生态库", en="Then inspect example projects and packages"),
+        t(locale, zh="最后进入编译器任务", en="Move to compiler tasks last"),
+      ],
+      href: "https://mooncakes.io/",
+      cta: t(locale, zh="先看生态与样例", en="Explore packages first"),
     },
   ]
 }
@@ -661,6 +741,36 @@ fn view_learn_card(card : LearnCard) -> Html {
 }
 
 ///|
+fn view_learn_step(item : LearnStep) -> Html {
+  article(class="learn-step-card", [
+    strong(class="learn-step-index", item.step),
+    div(class="learn-step-body", [
+      h3(item.title),
+      p(item.desc),
+    ]),
+  ])
+}
+
+///|
+fn view_persona_card(card : PersonaCard) -> Html {
+  article(class="persona-card", [
+    span(class="tag", card.badge),
+    h3(card.title),
+    p(card.desc),
+    ul(class="persona-points", card.bullets.map(fn(item) {
+      li(item)
+    })),
+    a(
+      class="learn-link",
+      href=card.href,
+      target=Blank,
+      rel="noreferrer",
+      card.cta,
+    ),
+  ])
+}
+
+///|
 fn view_timeline_item(item : TimelineItem) -> Html {
   article(class="timeline-item", [
     strong(class="timeline-step", item.step),
@@ -719,7 +829,15 @@ fn view_learn(model : Model) -> Html {
         t(model.locale, zh="在报名和开工之前，先用官方入口把 MoonBit 了解清楚", en="Use the official entry points to understand MoonBit before you sign up and start building"),
         t(model.locale, zh="这个板块是给第一次接触 MoonBit 的参赛者准备的。先补齐语言、工具链和生态入口，再进入任务池、仓库和项目开发，会顺很多。", en="This section is for participants who are new to MoonBit. Learn the language, toolchain, and ecosystem entry points first, then move into task pools, repositories, and project work with less friction."),
       ),
+      div(class="learn-journey", [
+        div(class="learn-subhead", [
+          h3(t(model.locale, zh="3 步快速入门", en="A 3-step quick start")),
+          p(t(model.locale, zh="如果你还没确定该从哪开始，可以按这个顺序走。", en="If you are not sure where to begin, follow this order.")),
+        ]),
+        div(class="learn-step-grid", learn_steps(model.locale).map(fn(item) { view_learn_step(item) })),
+      ]),
       div(class="learn-grid", learn_cards(model.locale).map(fn(card) { view_learn_card(card) })),
+      div(class="persona-grid", persona_cards(model.locale).map(fn(card) { view_persona_card(card) })),
     ]),
   ])
 }
