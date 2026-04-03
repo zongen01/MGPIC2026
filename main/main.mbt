@@ -239,6 +239,7 @@ fn hero_kv_subtitle(locale : Locale) -> String {
 ///|
 fn hero_kv_tags(locale : Locale) -> Array[String] {
   [
+    t(locale, zh="奖金激励", en="Prize incentive"),
     t(locale, zh="开源协作", en="Open source"),
     t(locale, zh="工程实践", en="Engineering"),
     t(locale, zh="项目孵化", en="Incubation"),
@@ -247,12 +248,31 @@ fn hero_kv_tags(locale : Locale) -> Array[String] {
 }
 
 ///|
+fn hero_prize_label(locale : Locale) -> String {
+  t(locale, zh="往届奖金规模参考", en="Reference prize scale")
+}
+
+///|
+fn hero_prize_value(_locale : Locale) -> String {
+  "¥84,000"
+}
+
+///|
+fn hero_prize_note(locale : Locale) -> String {
+  t(
+    locale,
+    zh="按 2025 双赛道公开奖金设置估算；2026 正式奖金以赛事章程公布为准。",
+    en="Estimated from the published 2025 awards across two tracks; the official 2026 prize setup will follow the final rules.",
+  )
+}
+
+///|
 fn hero_metrics(locale : Locale) -> Array[Metric] {
   [
     { label: t(locale, zh="目标仓库", en="Target repos"), value: "300+" },
     { label: t(locale, zh="重点项目", en="Key projects"), value: "100+" },
     { label: t(locale, zh="核心方向", en="Core direction"), value: t(locale, zh="开源 × 工程", en="Open source x engineering") },
-    { label: t(locale, zh="启动支持", en="Kickoff support"), value: "Codex" },
+    { label: hero_prize_label(locale), value: hero_prize_value(locale) },
   ]
 }
 
@@ -456,6 +476,11 @@ fn view_hero_banner(model : Model) -> Html {
         div(class="hero-banner-tags", hero_kv_tags(model.locale).map(fn(label) {
           span(class="hero-banner-tag", label)
         })),
+        div(class="hero-prize-chip", [
+          span(class="hero-prize-label", hero_prize_label(model.locale)),
+          strong(class="hero-prize-value", hero_prize_value(model.locale)),
+          p(class="hero-prize-note", hero_prize_note(model.locale)),
+        ]),
       ]),
       div(class="hero-banner-art", [
         div(class="hero-stage-m", "M"),
@@ -535,6 +560,7 @@ fn view_hero(model : Model) -> Html {
               t(model.locale, zh="了解 MoonBit", en="Explore MoonBit"),
             ),
           ]),
+          p(class="hero-prize-inline", hero_prize_note(model.locale)),
         ]),
         div(class="hero-panel", [
           div(class="stat-card stat-card--large", [
