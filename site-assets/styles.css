@@ -715,7 +715,8 @@ a {
 }
 
 .learn-grid {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
 }
 
 .learn-step-grid {
@@ -808,15 +809,31 @@ a {
 .learn-card {
   display: flex;
   flex-direction: column;
-  min-height: 240px;
+  min-height: 188px;
+  padding: 18px;
   background:
     radial-gradient(circle at top right, color-mix(in srgb, var(--primary-strong) 10%, transparent), transparent 26%),
     linear-gradient(180deg, color-mix(in srgb, var(--primary) 6%, transparent), transparent),
     var(--panel);
 }
 
+.learn-card .tag {
+  min-height: 30px;
+  padding: 0 12px;
+  font-size: 11px;
+}
+
+.learn-card h3 {
+  margin: 12px 0 8px;
+  font-size: 1.02rem;
+  line-height: 1.35;
+}
+
 .learn-card p {
-  max-width: 44ch;
+  max-width: none;
+  margin: 0 0 14px;
+  font-size: 0.92rem;
+  line-height: 1.6;
 }
 
 .learn-step-card,
@@ -892,13 +909,14 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
+  min-height: 36px;
   width: fit-content;
-  padding: 0 16px;
+  padding: 0 14px;
   border-radius: 999px;
   border: 1px solid color-mix(in srgb, var(--primary) 22%, var(--border));
   background: color-mix(in srgb, var(--primary) 12%, transparent);
   color: var(--text);
+  font-size: 0.92rem;
   font-weight: 700;
   text-decoration: none;
   transition:
@@ -1011,10 +1029,13 @@ a {
   .hero-banner-grid,
   .hero-inner,
   .card-grid,
-  .learn-grid,
   .learn-step-grid,
   .persona-grid {
     grid-template-columns: 1fr;
+  }
+
+  .learn-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .nav-shell,
@@ -1040,6 +1061,10 @@ a {
 
   .hero {
     padding-top: 24px;
+  }
+
+  .learn-grid {
+    grid-template-columns: 1fr;
   }
 
   .eyebrow,
