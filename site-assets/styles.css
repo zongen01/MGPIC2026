@@ -839,8 +839,7 @@ a {
   gap: 18px;
 }
 
-.learn-step-grid,
-.persona-grid {
+.learn-step-grid {
   display: grid;
   gap: 18px;
 }
@@ -860,11 +859,6 @@ a {
 
 .learn-step-grid {
   grid-template-columns: repeat(3, 1fr);
-}
-
-.persona-grid {
-  grid-template-columns: repeat(3, 1fr);
-  margin-top: 18px;
 }
 
 .section {
@@ -975,8 +969,7 @@ a {
   line-height: 1.6;
 }
 
-.learn-step-card,
-.persona-card {
+.learn-step-card {
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   background: var(--panel);
@@ -1006,8 +999,7 @@ a {
   font-weight: 800;
 }
 
-.learn-step-body h3,
-.persona-card h3 {
+.learn-step-body h3 {
   margin: 0 0 10px;
 }
 
@@ -1015,32 +1007,6 @@ a {
   margin: 0;
   color: var(--text-soft);
   line-height: 1.72;
-}
-
-.persona-card {
-  display: flex;
-  flex-direction: column;
-  min-height: 292px;
-  padding: 24px;
-  background:
-    radial-gradient(circle at top right, color-mix(in srgb, var(--primary-strong) 10%, transparent), transparent 28%),
-    linear-gradient(180deg, color-mix(in srgb, var(--primary) 4%, transparent), transparent),
-    var(--panel);
-}
-
-.persona-card p {
-  margin-top: 0;
-  color: var(--text-soft);
-}
-
-.persona-points {
-  margin: 0 0 18px;
-  padding-left: 18px;
-  color: var(--text-soft);
-}
-
-.persona-points li + li {
-  margin-top: 8px;
 }
 
 .learn-link {
@@ -1168,8 +1134,7 @@ a {
   .hero-banner-grid,
   .hero-inner,
   .card-grid,
-  .learn-step-grid,
-  .persona-grid {
+  .learn-step-grid {
     grid-template-columns: 1fr;
   }
 
