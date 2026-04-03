@@ -839,9 +839,9 @@ fn view(dispatch : Dispatch[Msg], model : Model) -> Html {
     main_(class="page-main", [
       view_hero(model),
       view_about(model),
+      view_timeline(model),
       view_learn(model),
       view_paths(model),
-      view_timeline(model),
       view_support(model),
       view_join(model),
       view_faq(model),
