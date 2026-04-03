@@ -375,6 +375,13 @@ fn learn_cards(locale : Locale) -> Array[LearnCard] {
       cta: t(locale, zh="阅读文档", en="Read docs"),
     },
     {
+      badge: t(locale, zh="B 站视频课程", en="Bilibili videos"),
+      title: t(locale, zh="跟着视频课程快速上手", en="Learn from the video courses"),
+      desc: t(locale, zh="如果你更习惯视频学习，可以直接看 MoonBit 官方 B 站账号上的课程与讲解视频。", en="If you prefer learning from videos, start with the tutorials and walkthroughs on MoonBit's official Bilibili channel."),
+      href: "https://space.bilibili.com/1453436642",
+      cta: t(locale, zh="打开 B 站课程", en="Open Bilibili"),
+    },
+    {
       badge: t(locale, zh="在线体验", en="Try online"),
       title: t(locale, zh="先写一个最小示例", en="Try a minimal example"),
       desc: t(locale, zh="如果暂时不想先装环境，可以直接在线试写 MoonBit，快速感受语法和反馈。", en="If you do not want to install locally first, try MoonBit online and get a quick feel for the syntax and feedback loop."),
@@ -421,6 +428,7 @@ fn persona_cards(locale : Locale) -> Array[PersonaCard] {
       desc: t(locale, zh="建议先用官网 + 在线体验建立感受，再回到文档完成本地环境配置。", en="Start with the website and online playground, then return to the docs to set up a local environment."),
       bullets: [
         t(locale, zh="先看官网和导览", en="Start with the website and tour"),
+        t(locale, zh="再看 B 站视频课程", en="Then watch the Bilibili videos"),
         t(locale, zh="在线写一个最小例子", en="Write one minimal example online"),
         t(locale, zh="再装本地环境", en="Install locally after that"),
       ],
