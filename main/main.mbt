@@ -135,6 +135,15 @@ struct InfoCard {
 }
 
 ///|
+struct LearnCard {
+  badge : String
+  title : String
+  desc : String
+  href : String
+  cta : String
+}
+
+///|
 struct PathCard {
   badge : String
   title : String
@@ -184,6 +193,7 @@ fn theme_toggle_label(model : Model) -> String {
 fn nav_items(locale : Locale) -> Array[NavItem] {
   [
     { label: t(locale, zh="介绍", en="About"), href: "#about" },
+    { label: t(locale, zh="学习了解", en="Learn"), href: "#learn" },
     { label: t(locale, zh="参与路径", en="Tracks"), href: "#paths" },
     { label: t(locale, zh="时间安排", en="Timeline"), href: "#timeline" },
     { label: t(locale, zh="支持计划", en="Support"), href: "#support" },
@@ -326,6 +336,40 @@ fn path_cards(locale : Locale) -> Array[PathCard] {
         t(locale, zh="中期验收与 Demo Day", en="Midterm review and demo day"),
         t(locale, zh="项目展示与孵化推荐", en="Showcase and incubation recommendations"),
       ],
+    },
+  ]
+}
+
+///|
+fn learn_cards(locale : Locale) -> Array[LearnCard] {
+  [
+    {
+      badge: t(locale, zh="官方网站", en="Official site"),
+      title: t(locale, zh="先快速认识 MoonBit", en="Start with the official overview"),
+      desc: t(locale, zh="先看 MoonBit 的语言定位、核心特性、生态入口和最新动态，建立整体认识。", en="Get the big picture first: language positioning, core features, ecosystem entry points, and recent updates."),
+      href: "https://www.moonbitlang.cn/",
+      cta: t(locale, zh="查看官网", en="Open website"),
+    },
+    {
+      badge: t(locale, zh="官方文档", en="Documentation"),
+      title: t(locale, zh="按文档完成入门与安装", en="Follow the docs for setup"),
+      desc: t(locale, zh="从安装、项目结构、构建系统到语法基础，按官方文档走一遍最快。", en="The fastest path is the official documentation: installation, project structure, build system, and language basics."),
+      href: "https://docs.moonbitlang.cn",
+      cta: t(locale, zh="阅读文档", en="Read docs"),
+    },
+    {
+      badge: t(locale, zh="在线体验", en="Try online"),
+      title: t(locale, zh="先写一个最小示例", en="Try a minimal example"),
+      desc: t(locale, zh="如果暂时不想先装环境，可以直接在线试写 MoonBit，快速感受语法和反馈。", en="If you do not want to install locally first, try MoonBit online and get a quick feel for the syntax and feedback loop."),
+      href: "https://try.moonbitlang.cn/",
+      cta: t(locale, zh="打开在线环境", en="Open playground"),
+    },
+    {
+      badge: t(locale, zh="生态与样例", en="Ecosystem"),
+      title: t(locale, zh="看看包、样例和导览", en="Explore packages and examples"),
+      desc: t(locale, zh="通过 Mooncakes 和交互导览了解现成库、样例项目和常见开发路径。", en="Use Mooncakes and the interactive tour to explore packages, example projects, and common development paths."),
+      href: "https://mooncakes.io/",
+      cta: t(locale, zh="查看生态", en="Explore ecosystem"),
     },
   ]
 }
@@ -601,6 +645,22 @@ fn view_path_card(card : PathCard) -> Html {
 }
 
 ///|
+fn view_learn_card(card : LearnCard) -> Html {
+  article(class="learn-card", [
+    span(class="tag", card.badge),
+    h3(card.title),
+    p(card.desc),
+    a(
+      class="learn-link",
+      href=card.href,
+      target=Blank,
+      rel="noreferrer",
+      card.cta,
+    ),
+  ])
+}
+
+///|
 fn view_timeline_item(item : TimelineItem) -> Html {
   article(class="timeline-item", [
     strong(class="timeline-step", item.step),
@@ -645,6 +705,21 @@ fn view_paths(model : Model) -> Html {
         "",
       ),
       div(class="card-grid", path_cards(model.locale).map(fn(card) { view_path_card(card) })),
+    ]),
+  ])
+}
+
+///|
+fn view_learn(model : Model) -> Html {
+  section(id="learn", class="section section--alt", [
+    div(class="container", [
+      section_intro(
+        model.locale,
+        t(model.locale, zh="学习了解 MoonBit", en="Learn MoonBit"),
+        t(model.locale, zh="在报名和开工之前，先用官方入口把 MoonBit 了解清楚", en="Use the official entry points to understand MoonBit before you sign up and start building"),
+        t(model.locale, zh="这个板块是给第一次接触 MoonBit 的参赛者准备的。先补齐语言、工具链和生态入口，再进入任务池、仓库和项目开发，会顺很多。", en="This section is for participants who are new to MoonBit. Learn the language, toolchain, and ecosystem entry points first, then move into task pools, repositories, and project work with less friction."),
+      ),
+      div(class="learn-grid", learn_cards(model.locale).map(fn(card) { view_learn_card(card) })),
     ]),
   ])
 }
@@ -766,6 +841,7 @@ fn view(dispatch : Dispatch[Msg], model : Model) -> Html {
     main_(class="page-main", [
       view_hero(model),
       view_about(model),
+      view_learn(model),
       view_paths(model),
       view_timeline(model),
       view_support(model),

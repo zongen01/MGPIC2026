@@ -630,6 +630,7 @@ a {
 .hero-text,
 .section-head p,
 .info-card p,
+.learn-card p,
 .path-card p,
 .timeline-body p,
 .join-copy p,
@@ -658,6 +659,7 @@ a {
 
 .stat-card,
 .info-card,
+.learn-card,
 .path-card,
 .timeline-item,
 .join-card,
@@ -692,7 +694,8 @@ a {
 }
 
 .stats-grid,
-.card-grid {
+.card-grid,
+.learn-grid {
   display: grid;
   gap: 18px;
 }
@@ -703,6 +706,10 @@ a {
 
 .card-grid {
   grid-template-columns: repeat(3, 1fr);
+}
+
+.learn-grid {
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .section {
@@ -723,14 +730,56 @@ a {
 }
 
 .info-card,
+.learn-card,
 .path-card {
   padding: 24px;
 }
 
 .info-card h3,
+.learn-card h3,
 .path-card h3,
 .timeline-body h3 {
   margin: 14px 0 10px;
+}
+
+.learn-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 240px;
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--primary-strong) 10%, transparent), transparent 26%),
+    linear-gradient(180deg, color-mix(in srgb, var(--primary) 6%, transparent), transparent),
+    var(--panel);
+}
+
+.learn-card p {
+  max-width: 44ch;
+}
+
+.learn-link {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  width: fit-content;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--primary) 22%, var(--border));
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  color: var(--text);
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.learn-link:hover {
+  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--primary) 18%, transparent);
+  border-color: color-mix(in srgb, var(--primary) 34%, var(--border));
 }
 
 .path-points {
@@ -830,7 +879,8 @@ a {
 @media (max-width: 1080px) {
   .hero-banner-grid,
   .hero-inner,
-  .card-grid {
+  .card-grid,
+  .learn-grid {
     grid-template-columns: 1fr;
   }
 
@@ -925,6 +975,7 @@ a {
 
   .stat-card,
   .info-card,
+  .learn-card,
   .path-card,
   .timeline-item,
   .join-card,
