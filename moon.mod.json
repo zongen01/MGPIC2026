@@ -1,0 +1,18 @@
+{
+  "name": "zongen01/mgpic2026-site",
+  "version": "0.1.0",
+  "deps": {
+    "moonbit-community/rabbita": "0.11.5"
+  },
+  "readme": "README.md",
+  "repository": "https://github.com/zongen01/MGPIC2026",
+  "license": "",
+  "keywords": [
+    "moonbit",
+    "rabbita",
+    "website",
+    "mgpic"
+  ],
+  "description": "MGPIC 2026 official website built with MoonBit and Rabbita",
+  "preferred-target": "js"
+}
