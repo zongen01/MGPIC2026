@@ -241,6 +241,19 @@ a {
   box-shadow: 0 32px 96px rgba(5, 8, 24, 0.42);
 }
 
+.hero-entry-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.hero-entry-button {
+  min-height: 40px;
+  padding: 0 16px;
+  box-shadow: none;
+}
+
 .hero-banner::before,
 .hero-banner::after {
   content: "";

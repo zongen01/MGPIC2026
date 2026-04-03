@@ -630,6 +630,18 @@ fn view_hero(model : Model) -> Html {
   section(id="top", class="hero", [
     div(class="container", [
       view_hero_banner(model),
+      div(class="hero-entry-strip", [
+        a(
+          class="button primary hero-entry-button",
+          href="#join",
+          t(model.locale, zh="报名入口", en="Sign up"),
+        ),
+        a(
+          class="button secondary hero-entry-button",
+          href="#learn",
+          t(model.locale, zh="了解 MoonBit", en="Learn MoonBit"),
+        ),
+      ]),
     ]),
   ])
 }
