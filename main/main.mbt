@@ -6,7 +6,6 @@ using @html {
   details,
   div,
   footer,
-  h1,
   h2,
   h3,
   header,
@@ -123,12 +122,6 @@ struct NavItem {
 }
 
 ///|
-struct Metric {
-  label : String
-  value : String
-}
-
-///|
 struct InfoCard {
   title : String
   desc : String
@@ -228,24 +221,6 @@ fn hero_eyebrow(locale : Locale) -> String {
 }
 
 ///|
-fn hero_title(locale : Locale) -> String {
-  t(
-    locale,
-    zh="把赛事做成一次真正的\nMoonBit 开源生态增长计划",
-    en="Turn the contest into a real\nMoonBit open-source growth program",
-  )
-}
-
-///|
-fn hero_text(locale : Locale) -> String {
-  t(
-    locale,
-    zh="MGPIC 2026 不只是一次比赛，而是一场围绕 GitHub 开源协作、工程化项目交付与长期生态沉淀展开的开发者动员计划。赛事将通过任务池、模板仓库、AI 启动支持与项目孵化机制，帮助更多开发者真正开始并持续参与 MoonBit 开源生态建设。",
-    en="MGPIC 2026 is not only a contest. It is an open-source mobilization program built around GitHub collaboration, engineering delivery, and long-term ecosystem growth. The event will use task pools, starter repositories, AI-assisted onboarding, and incubation mechanisms to help more developers begin and stay active in the MoonBit ecosystem.",
-  )
-}
-
-///|
 fn hero_kv_title(locale : Locale) -> String {
   t(
     locale,
@@ -291,16 +266,6 @@ fn hero_prize_note(locale : Locale) -> String {
     zh="按 2025 双赛道公开奖金设置估算；2026 正式奖金以赛事章程公布为准。",
     en="Estimated from the published 2025 awards across two tracks; the official 2026 prize setup will follow the final rules.",
   )
-}
-
-///|
-fn hero_metrics(locale : Locale) -> Array[Metric] {
-  [
-    { label: t(locale, zh="目标仓库", en="Target repos"), value: "300+" },
-    { label: t(locale, zh="重点项目", en="Key projects"), value: "100+" },
-    { label: t(locale, zh="核心方向", en="Core direction"), value: t(locale, zh="开源 × 工程", en="Open source x engineering") },
-    { label: hero_prize_label(locale), value: hero_prize_value(locale) },
-  ]
 }
 
 ///|
@@ -586,14 +551,6 @@ fn view_header(dispatch : Dispatch[Msg], model : Model) -> Html {
 }
 
 ///|
-fn view_metric(metric : Metric) -> Html {
-  div(class="stat-card", [
-    span(class="stat-key", metric.label),
-    strong(class="stat-value", metric.value),
-  ])
-}
-
-///|
 fn view_hero_banner(model : Model) -> Html {
   div(class="hero-banner", [
     div(class="hero-banner-grid", [
@@ -673,41 +630,6 @@ fn view_hero(model : Model) -> Html {
   section(id="top", class="hero", [
     div(class="container", [
       view_hero_banner(model),
-      div(class="hero-inner", [
-        div(class="hero-copy", [
-          p(class="eyebrow", t(model.locale, zh="Program Vision", en="Program Vision")),
-          h1(class="hero-title", hero_title(model.locale)),
-          p(class="hero-text", hero_text(model.locale)),
-          div(class="hero-actions", [
-            a(
-              class="button primary",
-              href="#join",
-              t(model.locale, zh="报名通道预留", en="Reserve the sign-up channel"),
-            ),
-            a(
-              class="button secondary",
-              href="https://www.moonbitlang.cn/",
-              target=Blank,
-              rel="noreferrer",
-              t(model.locale, zh="了解 MoonBit", en="Explore MoonBit"),
-            ),
-          ]),
-          p(class="hero-prize-inline", hero_prize_note(model.locale)),
-        ]),
-        div(class="hero-panel", [
-          div(class="stat-card stat-card--large", [
-            span(class="stat-key", t(model.locale, zh="2026 目标", en="2026 Goal")),
-            strong(
-              class="stat-value stat-value--large",
-              t(model.locale, zh="1000 名有效参赛者", en="1,000 effective participants"),
-            ),
-            p(
-              t(model.locale, zh="围绕公开仓库、真实提交、项目孵化和成果展示，形成可验证的开源增长成果。", en="Turn public repositories, real commits, project incubation, and visible showcases into measurable open-source growth."),
-            ),
-          ]),
-          div(class="stats-grid", hero_metrics(model.locale).map(fn(metric) { view_metric(metric) })),
-        ]),
-      ]),
     ]),
   ])
 }
