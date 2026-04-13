@@ -401,6 +401,13 @@ fn showcase_cards(locale : Locale) -> Array[ShowcaseCard] {
       note: t(locale, zh="关键词：Markdown、脑图编辑、可视化导出", en="Markdown, mind-map editing, visual export"),
       href: "https://github.com/Xiao-li-He/MoonMarkMind",
     },
+    {
+      badge: t(locale, zh="工具项目", en="Tooling project"),
+      title: "moonink",
+      desc: t(locale, zh="一个用 MoonBit 编写的静态站点生成器，已经实现 `help`、`onboard`、`build`、`serve` 等 CLI 流程，并支持页面构建、模板渲染和本地预览。", en="A static site generator written in MoonBit, with `help`, `onboard`, `build`, and `serve` commands plus page building, template rendering, and local preview."),
+      note: t(locale, zh="关键词：静态站点生成、CLI、模板渲染", en="Static site generation, CLI, template rendering"),
+      href: "https://github.com/Kozmosa/moonink",
+    },
   ]
 }
 
