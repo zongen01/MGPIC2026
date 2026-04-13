@@ -834,7 +834,8 @@ a {
 
 .stats-grid,
 .card-grid,
-.learn-grid {
+.learn-grid,
+.showcase-grid {
   display: grid;
   gap: 18px;
 }
@@ -855,6 +856,10 @@ a {
 .learn-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
+}
+
+.showcase-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .learn-step-grid {
@@ -967,6 +972,64 @@ a {
   margin: 0 0 14px;
   font-size: 0.92rem;
   line-height: 1.6;
+}
+
+.showcase-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 220px;
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--primary-strong) 12%, transparent), transparent 26%),
+    linear-gradient(180deg, color-mix(in srgb, var(--primary) 5%, transparent), transparent),
+    var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.showcase-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.showcase-card .tag {
+  min-height: 30px;
+  padding: 0 12px;
+  font-size: 11px;
+}
+
+.showcase-card-link {
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.showcase-card-link:hover {
+  color: var(--text);
+}
+
+.showcase-card h3 {
+  margin: 16px 0 10px;
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.showcase-card p {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.68;
+}
+
+.showcase-card-note {
+  margin-top: auto;
+  padding-top: 18px;
+  color: color-mix(in srgb, var(--text-soft) 82%, var(--text) 18%);
+  font-size: 0.92rem;
 }
 
 .learn-step-card {
@@ -1134,7 +1197,8 @@ a {
   .hero-banner-grid,
   .hero-inner,
   .card-grid,
-  .learn-step-grid {
+  .learn-step-grid,
+  .showcase-grid {
     grid-template-columns: 1fr;
   }
 

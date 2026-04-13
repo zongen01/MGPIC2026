@@ -144,6 +144,15 @@ struct LearnStep {
 }
 
 ///|
+struct ShowcaseCard {
+  badge : String
+  title : String
+  desc : String
+  note : String
+  href : String
+}
+
+///|
 struct PathCard {
   badge : String
   title : String
@@ -193,6 +202,7 @@ fn theme_toggle_label(model : Model) -> String {
 fn nav_items(locale : Locale) -> Array[NavItem] {
   [
     { label: t(locale, zh="介绍", en="About"), href: "#about" },
+    { label: t(locale, zh="展示墙", en="Showcase"), href: "#showcase" },
     { label: t(locale, zh="学习了解", en="Learn"), href: "#learn" },
     { label: t(locale, zh="参与路径", en="Tracks"), href: "#paths" },
     { label: t(locale, zh="时间安排", en="Timeline"), href: "#timeline" },
@@ -370,6 +380,26 @@ fn learn_steps(locale : Locale) -> Array[LearnStep] {
       step: "03",
       title: t(locale, zh="按自己的背景选择入口", en="Pick the right entry for your background"),
       desc: t(locale, zh="如果你是零基础、已有开发经验、或者想做编译器方向，推荐的起步路线并不一样。", en="The best first path differs depending on whether you are brand new, already experienced, or aiming at compiler work."),
+    },
+  ]
+}
+
+///|
+fn showcase_cards(locale : Locale) -> Array[ShowcaseCard] {
+  [
+    {
+      badge: t(locale, zh="SCC 参赛项目", en="SCC project"),
+      title: "MoonSEO",
+      desc: t(locale, zh="一个用 MoonBit 实现的 SEO 落地页生成与审计 MVP，可把品牌 brief 生成静态页面草稿，并做可验证的规则检查。", en="A MoonBit-first MVP for generating and auditing SEO landing pages from a brief, with deterministic checks and static page export."),
+      note: t(locale, zh="关键词：SEO 落地页、规则审计、静态 HTML 导出", en="SEO landing pages, rule audit, static HTML export"),
+      href: "https://github.com/lauraraccoon/MoonSEO",
+    },
+    {
+      badge: t(locale, zh="Demo 项目", en="Demo project"),
+      title: "MoonMarkMind",
+      desc: t(locale, zh="一个用 MoonBit 编写的 Markdown 脑图编辑 Demo，支持结构解析、交互编辑、预览，以及导出 PNG、SVG、HTML。", en="A MoonBit Markdown mind-map demo with parsing, interactive editing, preview, and export to PNG, SVG, and HTML."),
+      note: t(locale, zh="关键词：Markdown、脑图编辑、可视化导出", en="Markdown, mind-map editing, visual export"),
+      href: "https://github.com/Xiao-li-He/MoonMarkMind",
     },
   ]
 }
@@ -641,6 +671,25 @@ fn view_learn_card(card : LearnCard) -> Html {
 }
 
 ///|
+fn view_showcase_card(card : ShowcaseCard) -> Html {
+  article(class="showcase-card", [
+    div(class="showcase-card-top", [
+      span(class="tag", card.badge),
+      a(
+        class="showcase-card-link",
+        href=card.href,
+        target=Blank,
+        rel="noreferrer",
+        "GitHub",
+      ),
+    ]),
+    h3(card.title),
+    p(card.desc),
+    p(class="showcase-card-note", card.note),
+  ])
+}
+
+///|
 fn view_learn_step(item : LearnStep) -> Html {
   article(class="learn-step-card", [
     strong(class="learn-step-index", item.step),
@@ -733,6 +782,21 @@ fn view_timeline(model : Model) -> Html {
         "",
       ),
       div(class="timeline-list", timeline_items(model.locale).map(fn(item) { view_timeline_item(item) })),
+    ]),
+  ])
+}
+
+///|
+fn view_showcase(model : Model) -> Html {
+  section(id="showcase", class="section section--alt", [
+    div(class="container", [
+      section_intro(
+        model.locale,
+        t(model.locale, zh="赛事展示墙", en="Showcase"),
+        t(model.locale, zh="已收录的 MoonBit 赛事项目", en="Selected MoonBit contest projects"),
+        t(model.locale, zh="先把已经出现的项目放进展示墙，后面可以继续补更多仓库、截图和在线预览入口。", en="This wall starts with the projects already in play and can later grow with more repositories, screenshots, and live previews."),
+      ),
+      div(class="showcase-grid", showcase_cards(model.locale).map(fn(card) { view_showcase_card(card) })),
     ]),
   ])
 }
@@ -840,6 +904,7 @@ fn view(dispatch : Dispatch[Msg], model : Model) -> Html {
       view_hero(model),
       view_about(model),
       view_timeline(model),
+      view_showcase(model),
       view_learn(model),
       view_paths(model),
       view_support(model),
